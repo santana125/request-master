@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, Method, AxiosInstance, AxiosResponse, } from
 
 import chalk from 'chalk'
 import { randomChalkColor } from './chalkCustomMethods';
+import { processData } from './dataGenerator';
 
 interface IIteration {
   status: number,
@@ -32,12 +33,19 @@ class Requester {
   repetitions: number;
   results: Array<IIteration> = [];
   api: AxiosInstance;
+  data: object
 
   constructor (config: IConfig) {
+    this.data = {}
     this.name = config.name
     this.URL = config.url
     this.method = config.method
     this.repetitions = config.repetitions
+
+    if(config.method === 'POST'){
+      this.data = config.data
+    } 
+
     this.api = axios.create({url: config.url})
 
     this.api.interceptors.request.use(function (config) {
@@ -62,7 +70,9 @@ class Requester {
   async call(index: number): Promise<any> {
       try {
         const res = await this.api({
-          method: this.method
+          method: this.method,
+          headers: {'Content-Type' : 'application/json'},
+          data: processData(this.data)
         })
         const response = (res as IResponse)
         this.results[index] = {
@@ -71,20 +81,12 @@ class Requester {
         }
       } catch (error) {
         const response = (error.response as IResponse)
+        console.log(response.data)
         this.results[index] = {
           status: response.status,
           timeLapsed: error.duration
         }
       }
-  }
-
-  async runAll(): Promise<any> {
-    const tasks = this.prepareTasks()
-    const result = Promise.all(tasks).then(
-      resp => {return resp}
-    )
-    .catch(err => Promise.reject(err))
-    return result
   }
 
   prepareTasks(): any {
@@ -97,6 +99,14 @@ class Requester {
     return tasks
   }
 
+  async runAll(): Promise<any> {
+    const tasks = this.prepareTasks()
+    const result = Promise.all(tasks).then(
+      resp => {return resp}
+    )
+    .catch(err => Promise.reject(err))
+    return result
+  }
 
   showResults(): void {
     const chalkColor = randomChalkColor();
@@ -125,7 +135,6 @@ class Requester {
 
 async function main() {
   const requests = require('./requests.json')
-
   const queue = requests.map((config: IConfig) => {
     const item = new Requester(config)
     return item 

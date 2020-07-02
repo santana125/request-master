@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chalk": "^4.1.0",
+    "faker-br": "^0.2.7",
     "fs": "^0.0.1-security"
   }
 }

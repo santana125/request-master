@@ -1,20 +1,23 @@
 [
   {
-    "name": "POEM",
-    "url": "https://www.poemist.com/api/v1/randompoems",
-    "method": "GET",
-    "repetitions": 10
-  },
-  {
-    "name": "POKEMON",
-    "url": "https://pokeapi.co/api/v2/pokemon/ditto",
-    "method": "GET",
-    "repetitions": 90
-  },
-  {
-    "name": "WRONG",
-    "url": "https://google.com",
-    "method": "GET",
-    "repetitions": 4
+    "name": "PAN",
+    "url": "http://25.106.174.103:3002/server/users",
+    "method": "POST",
+    "repetitions": 4,
+    "data": {
+      "fake:cpf": "",
+      "fake:name": "",
+      "fake:email": "",
+      "fake:phone": "",
+      "birthdate": "1997-08-11",
+      "fake:gender": "",
+      "bank": {
+        "code": 623,
+        "agency": 123123,
+        "account": 123123,
+        "type": "corrente"
+     },
+      "agreed": true
+    }
   }
 ]

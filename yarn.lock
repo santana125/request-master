@@ -69,6 +69,11 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
+faker-br@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/faker-br/-/faker-br-0.2.7.tgz#a96c1d6e7a93e3bbf69809449e9b1365d8d03d71"
+  integrity sha512-7YbwH3oWmZc48JfiM3WKGpjQd7dVMYMNJyPVPE4bQBfLPfI4U2uXKQvhe0R0xhgx7JqjmyFJvPz/ZEVWRdWH1g==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
